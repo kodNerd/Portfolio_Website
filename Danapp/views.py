@@ -27,8 +27,8 @@ def index(request):
 #     return render(request,'Home/teacherProfile.html')
 # def blog(request):
 #     return render(request,'Home/blog.html')
-def about(request):
-    return render(request,'Danapp/about.html')
+# def about(request):
+#     return render(request,'Danapp/about.html')
 # def login(request):
 #     return render(request,'Home/login.html')
 
@@ -57,4 +57,4 @@ def about(request):
 #             return redirect('Home/register.html')
 #     return render(request, 'Home/register.html')
 def portfolio_details(request):
-    return render(request, 'Danapp/portfolio-details')
+    return render(request, 'Danapp/portfolio-details.html')
