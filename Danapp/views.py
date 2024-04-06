@@ -3,7 +3,6 @@ from django.contrib import messages
 from django.contrib.auth.models import User,auth
 from django.core.mail import send_mail
 from django.conf import settings
-# from .models import Registration
 # Create your views here.
 def index(request):
     if request.method == "POST":
@@ -13,15 +12,13 @@ def index(request):
         subject = request.POST['subject']
         
         send_mail(
-            subject,  # Subject should come first
-            message,  # Message should come second
-            email,  # Sender's email address
-            ['bencoder9@gmail.com'],  # Recipient(s) as a list
+            subject,  
+            message,  
+            email,  
+            ['bencoder9@gmail.com'], 
         )
-
     return render(request, 'Danapp/index.html')
-# def teachers(request):
-#     return render(request,'Home/teachers.html')
+
 # def courses(request):
 #     return render(request,'Home/courses.html')
 # def events(request):
