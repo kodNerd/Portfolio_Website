@@ -57,4 +57,4 @@ def about(request):
 #             return redirect('Home/register.html')
 #     return render(request, 'Home/register.html')
 def portfolio_details(request):
-    return render(request, 'Danaap/portfolio-details')
+    return render(request, 'Danapp/portfolio-details')
