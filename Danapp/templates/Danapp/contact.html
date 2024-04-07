@@ -21,6 +21,7 @@ html{
 }
 body{
     overflow-x: hidden;
+    background-color: #0000006d;
 }
 
 
@@ -29,7 +30,7 @@ body{
 main{
     width: 100%;
     height: 70vh;
-    background-color: aquamarine;
+    background-color: black;
     display: flex;
     text-align: center;
     align-items: center;
@@ -41,70 +42,7 @@ main h1{
 
 
 
-/* =============== for responsive ============== */
 
-@media (max-width:980px){
-    .logo{
-        color:white;
-        font-size: 30px;
-    }
-    .navbar .ul-list li a{
-        color: white;
-        font-size: 15px;
-    }
-    main h1{
-        font-size: 40px;
-    }
-}
-
-@media (max-width:860px){
-    .mobile-navbar-btn{
-        display: block;
-        z-index: 999;
-
-    }
-    .navbar .ul-list li a{
-        font-size: 20px;
-    }
-    header{
-        position: relative;
-    }
-    .navbar{
-        width: 100%;
-        height: 85vh;
-        background: black;
-        position: absolute;
-        top: 0;
-        left: 0;
-
-        display: flex;
-        justify-content: center;
-        align-items: center;
-
-        transform: translateX(100%);
-        transition: all 0.5s linear;
-    }
-    .navbar .ul-list{
-        flex-direction: column;
-        align-items: center;
-        gap: 0px;
-    }
-    .active .navbar{
-        transform: translateX(0);
-        opacity: 1;
-        visibility: visible;
-        pointer-events: auto;
-    }
-
-    .active .mobile-navbar-btn .mobile-nav-icon[name="close-outline"]{
-        display: block;
-    }
-    .active .mobile-navbar-btn .mobile-nav-icon[name="menu-outline"]{
-        display: none;
-    }
-
-
-}
 .contact-box{
 	max-width: 100%;
 	display: grid;
@@ -113,8 +51,9 @@ main h1{
 	justify-content: center;
 	align-items: center;
 	text-align: center;
-	background-color: #b5ccd1;
+	background-color: #050505;
     transition: 0.5s;
+    height: 100%;
 }
 
 .contact-box:hover{
@@ -124,7 +63,7 @@ main h1{
 
 
 .left{
-	background: url("{% static '/img/contact.png'%}") no-repeat center; /*TODO: add some image*/
+	background: url("{% static '/img/contact.jfif'%}") no-repeat center; /*TODO: add some image*/
 	background-size: cover;
 	height: 100%;
     border-radius: 10px;
@@ -158,40 +97,19 @@ h2:after{
 	border: 2px solid rgba(0, 0, 0, 0);
     border-radius: 3px;
 	outline: none;
-	background-color: rgba(230, 230, 230, 0.835);
+	background-color: rgba(89, 89, 89, 0.835);
 	padding: 0.5rem 1rem;
 	font-size: 1.1rem;
 	margin-bottom: 22px;
 	transition: .3s;
 }
 
-.field:hover{
-	background-color: rgba(0, 0, 0, 0.1);
-}
-
 textarea{
 	min-height: 150px;
 }
 
-.btn{
-	width: 40%;
-	padding: 0.5rem 1rem;
-	background-color: #25a888;
-    border-radius: 3px;
-	color: #fff;
-	font-size: 1.1rem;
-	border: none;
-	outline: none;
-	cursor: pointer;
-	transition: .3s;
-}
-
-.btn:hover{
-    box-shadow: 0 0 20px 0px rgba(0,0,0,0.15);
-}
-
 .field:focus{
-    background-color: #fff;
+    background-color: #eeee;
 }
 
 @media screen and (max-width: 768px){
@@ -208,29 +126,36 @@ textarea{
 <body>
 
    
-<section class="section" id="contact">
-    {%for message in messages%}
-    <div class="alert alert-dismissible alert-success">
-        <strong> {{message}}</strong>
-        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-      </div>
-    {%endfor%}
-    <form action="{%url 'portfolio_view'%}" name="contactForm" method="POST" onsubmit="return ">
-        {% csrf_token %}
-        <div class="contact-box">
-            <div class="left"></div>
-            <div class="right">
-                <h2>Contact me</h2>
-                <input type="text" class="field" placeholder="Your Name" name="name" required>
-                <input type="email" class="field" placeholder="Your Email" name="email" required>
-                <input type="text" class="field" placeholder="Phone" name="phone" required>
-                <textarea placeholder="Message" class="field" name="message" required></textarea>
-                <button class="btn btn-lg btn-success">Send</button>
-            </div>
+<div class="container">
+    <div class="row mt-4">
+        <div class="col-12">
+            <section class="section" id="contact">
+                {%for message in messages%}
+                <div class="alert alert-dismissible alert-success">
+                    <strong> {{message}}</strong>
+                    <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                  </div>
+                {%endfor%}
+                <form action="{%url 'portfolio_view'%}" name="contactForm" method="POST" onsubmit="return ">
+                    {% csrf_token %}
+                    <div class="contact-box">
+                        <div class="left">
+                        </div>
+                        <div class="right">
+                            <h2>Contact me</h2>
+                            <input type="text" class="field" placeholder="Your Name" name="name" required>
+                            <input type="email" class="field" placeholder="Your Email" name="email" required>
+                            <input type="text" class="field" placeholder="Phone" name="phone" required>
+                            <textarea placeholder="Message" class="field" name="message" required></textarea>
+                            <button class="btn btn-lg btn-success">Send</button>
+                        </div>
+                    </div>
+                    
+                </form>
+            </section>
         </div>
-        
-    </form>
-</section>
+    </div>
+</div>
   <script src="{%static '/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
 </body>
 </html>
