@@ -15,7 +15,9 @@
     text-decoration: none;
     list-style: none;
     box-sizing: border-box;
-}
+}a{text-decoration: none; color:white;
+    font-weight: bolder;
+    font-family: "Courier New", Courier, monospace;}
 html{
     overflow-x: hidden;
 }
@@ -57,7 +59,7 @@ main h1{
 }
 
 .contact-box:hover{
-    box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
+    box-shadow: 0 0 20px 0px rgba(0, 0, 0, 0.24);
 }
 
 
@@ -72,14 +74,17 @@ main h1{
 
 .right{
 	padding: 25px 40px;
+
 }
 
-h2{
+.right h2{
 	position: relative;
 	padding: 0 0 10px;
 	margin-bottom: 10px;
+    color: aliceblue;    
+    text-transform: capitalize;
+    font-family: "Georgia", Courier, monospace;
 }
-
 h2:after{
 	content: '';
     position: absolute;
@@ -87,10 +92,10 @@ h2:after{
     bottom: 0;
     transform: translateX(-50%);
     height: 4px;
-    width: 50px;
+    width: 80px;
     border-radius: 2px;
-    background-color: #25a888;
-}
+    background-color: #15bb62;
+} .homebtn:hover{ border-bottom: #15bb62 solid 1px;border-right: #15bb62 solid 1px;border-radius: 5px;}
 
 .field{
 	width: 100%;
@@ -124,7 +129,6 @@ textarea{
 
 </head>
 <body>
-
    
 <div class="container">
     <div class="row mt-4">
@@ -140,6 +144,11 @@ textarea{
                     {% csrf_token %}
                     <div class="contact-box">
                         <div class="left">
+                            <div class="row">
+                                <ul class="d-flex float-left">
+                                    <li><p class="homebtn"><button class="btn btn-secondary btn-sm" style="background-color: #050505; border: none;"><a href="{%url 'index'%}">Home</a></button></li>
+                                </ul>
+                            </div>
                         </div>
                         <div class="right">
                             <h2>Contact me</h2>
@@ -147,7 +156,7 @@ textarea{
                             <input type="email" class="field" placeholder="Your Email" name="email" required>
                             <input type="text" class="field" placeholder="Phone" name="phone" required>
                             <textarea placeholder="Message" class="field" name="message" required></textarea>
-                            <button class="btn btn-lg btn-success">Send</button>
+                            <button class="btn btn-xx-lg btn-success">Send</button>
                         </div>
                     </div>
                     
