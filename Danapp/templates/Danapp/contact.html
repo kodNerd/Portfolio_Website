@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+{%load static %}
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+    margin:0;
+    padding: 0;
+    text-decoration: none;
+    list-style: none;
+    box-sizing: border-box;
+}
+html{
+    overflow-x: hidden;
+}
+body{
+    overflow-x: hidden;
+}
+header{
+    padding: 0 50px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color:black ;
+}
+.logo{
+    color:white;
+    font-size: 30px;
+    line-height: 80px;
+    font-weight: bold;
+}
+span{
+    color: red;
+}
+.navbar .ul-list{
+    display: flex;
+    gap: 40px;
+}
+.navbar .ul-list li{
+    line-height: 80px;
+}
+.navbar .ul-list li a{
+    color: white;
+    font-size: 18px;
+    text-transform: uppercase;
+    cursor: pointer;
+}
+.navbar .ul-list li a:hover,a:active{
+    color: red;
+}
+
+
+/* ============ icon button ============= */
+
+.mobile-navbar-btn{
+    display: none;
+    background: transparent;
+    cursor: pointer;
+}
+.mobile-nav-icon{
+    width: 40px;
+    height: 40px;
+    color: white;
+}
+.mobile-nav-icon[name="close-outline"]{
+    display: none;
+}
+
+
+/* ================= Main section ================= */
+
+main{
+    width: 100%;
+    height: 70vh;
+    color: #fff;
+    background-color: black;
+    display: flex;
+    text-align: center;
+    align-items: center;
+    justify-content: center;
+}
+main h1{
+    font-size: 50px;
+}
+
+
+
+/* =============== for responsive ============== */
+
+@media (max-width:980px){
+    .logo{
+        color:white;
+        font-size: 30px;
+    }
+    .navbar .ul-list li a{
+        color: white;
+        font-size: 15px;
+    }
+    main h1{
+        font-size: 40px;
+    }
+}
+
+@media (max-width:860px){
+    .mobile-navbar-btn{
+        display: block;
+        z-index: 999;
+
+    }
+    .navbar .ul-list li a{
+        font-size: 20px;
+    }
+    header{
+        position: relative;
+    }
+    .navbar{
+        width: 100%;
+        height: 85vh;
+        background: black;
+        position: absolute;
+        top: 0;
+        left: 0;
+
+
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        transform: translateX(100%);
+        transition: all 0.5s linear;
+    }
+    .navbar .ul-list{
+        flex-direction: column;
+        align-items: center;
+        gap: 0px;
+    }
+    .active .navbar{
+        transform: translateX(0);
+        opacity: 1;
+        visibility: visible;
+        pointer-events: auto;
+    }
+
+    .active .mobile-navbar-btn .mobile-nav-icon[name="close-outline"]{
+        display: block;
+    }
+    .active .mobile-navbar-btn .mobile-nav-icon[name="menu-outline"]{
+        display: none;
+    }
+
+
+}
+.contact-box{
+	max-width: 100%;
+	display: grid;
+    border-radius: 10px;
+	grid-template-columns: repeat(2, 1fr);
+	justify-content: center;
+	align-items: center;
+	text-align: center;
+	background-color: #b5ccd1;
+    transition: 0.5s;
+}
+
+.contact-box:hover{
+    box-shadow: 0 0 20px 0px rgba(0,0,0,0.3);
+}
+
+
+
+.left{
+	background: url("{% static '/img/me.jpg'%}") no-repeat center; /*TODO: add some image*/
+	background-size: cover;
+	height: 100%;
+    border-radius: 10px;
+    background-color: black;
+
+}
+
+.right{
+	padding: 25px 40px;
+    background-color: black;
+    color: white;
+}
+
+h2{
+	position: relative;
+	padding: 0 0 10px;
+	margin-bottom: 10px;
+}
+
+h2:after{
+	content: '';
+    position: absolute;
+    left: 50%;
+    bottom: 0;
+    transform: translateX(-50%);
+    height: 4px;
+    width: 50px;
+    border-radius: 2px;
+    background-color: #25a888;
+}
+
+.field{
+	width: 100%;
+	border: 2px solid rgba(0, 0, 0, 0);
+    border-radius: 3px;
+	outline: none;
+	background-color: #5b525289;;
+	padding: 0.5rem 1rem;
+	font-size: 1.1rem;
+	margin-bottom: 22px;
+	transition: .3s;
+}
+
+/* .field:hover{
+	background-color: rgba(0, 0, 0, 0.1);
+} */
+
+textarea{
+	min-height: 150px;
+}
+
+.btn{
+	width: 40%;
+	padding: 0.5rem 1rem;
+	background-color: #25a888;
+    border-radius: 3px;
+	color: #fff;
+	font-size: 1.1rem;
+	border: none;
+	outline: none;
+	cursor: pointer;
+	transition: .3s;
+}
+
+.btn:hover{
+    box-shadow: 0 0 20px 0px rgba(0,0,0,0.15);
+}
+
+.field:focus{
+    background-color: #726e6e7d;
+}
+
+@media screen and (max-width: 768px){
+	.contact-box{
+		grid-template-columns: 1fr;
+	}
+	.left{
+		height: 200px;
+	}
+}
+    </style>
+
+</head>
+<body style="background-color: black">
+    <header class="header active">
+        <label class="logo">
+            Tech<span>World</span>
+        </label>
+
+        <nav class="navbar">
+            <ul class="ul-list">
+                <li><a href="{%url 'index'%}" class="active">Home</a></li>
+                <li><a href="#">Service</a></li>
+                <li><a href="#">About</a></li>
+                <li><a href="#">Contact</a></li>
+                <li><a href="#">Privacy</a></li>
+            </ul>
+        </nav>
+
+        <div class="mobile-navbar-btn">
+            <ion-icon name="menu-outline" class="mobile-nav-icon"></ion-icon>
+            <ion-icon name="close-outline" class="mobile-nav-icon"></ion-icon>
+        </div>
+    </header>
+   
+<section class="section" id="contact" style="margin-top: 50px;">
+    <form action="{%url 'portfolio_view'%}" name="contactForm" method="POST" onsubmit="return validateForm()">
+        {% csrf_token %}
+        <div class="contact-box">
+            <div class="left"></div>
+            <div class="right">
+                <h2>Contact me</h2>
+                <input type="text" class="field" placeholder="Your Name" name="name">
+                <input type="text" class="field" placeholder="Your Email" name="email">
+                <input type="text" class="field" placeholder="Phone" name="phone">
+                <textarea placeholder="Message" class="field" name="message"></textarea>
+                <button class="btn">Send</button>
+            </div>
+        </div>
+    </form>
+</section>
+
+<script>
+    function validateForm(){
+        let name = document.forms['contactForm']['name'].value;
+        let email = document.forms['contactForm']['email'].value;
+        let phone = document.forms['contactForm']['phone'].value;
+        let message = document.forms['contactForm']['message'].value;
+  
+        if (name == '' || hasNumber(name)){
+            alert('Name must be filled out and must only contain letters');
+            return false;
+        } else if (email == '' && phone == ''){
+            alert('Email or phone must be filled out');
+            return false;
+        } else if (!(email.includes('@'))){
+            alert('Email does not seem to be valid');
+            return false;
+        }else if (isNaN(phone)){
+            alert('Phone number seems to contain letters');
+            return false;
+        } else if (message == ''){
+            alert('Message must be filled out');
+            return false;
+        } else {
+            // confirm or cancel
+            return confirm('Do you really want to sent the message?')
+        }
+    }
+  
+    function hasNumber(myString) {
+        return /\d/.test(myString);
+    }
+  </script>
+  <script>    const mobile_nav = document.querySelector(".mobile-navbar-btn");
+    const nav_header = document.querySelector(".header");
+    
+    const toogleNavbar =() =>{
+        nav_header.classList.toggle("active");
+    }
+    
+    mobile_nav.addEventListener("click", () =>toogleNavbar());</script>
+  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
+  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+</body>
+</html>
