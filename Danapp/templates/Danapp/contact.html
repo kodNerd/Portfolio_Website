@@ -5,6 +5,9 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+    
+    <!-- Latest compiled and minified CSS -->
+    <link href="{%static '/vendor/bootstrap/css/bootstrap.min.css'%}" rel="stylesheet">
     <style>
         *{
     margin:0;
@@ -19,55 +22,6 @@ html{
 body{
     overflow-x: hidden;
 }
-header{
-    padding: 0 50px;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    background-color:black ;
-}
-.logo{
-    color:white;
-    font-size: 30px;
-    line-height: 80px;
-    font-weight: bold;
-}
-span{
-    color: red;
-}
-.navbar .ul-list{
-    display: flex;
-    gap: 40px;
-}
-.navbar .ul-list li{
-    line-height: 80px;
-}
-.navbar .ul-list li a{
-    color: white;
-    font-size: 18px;
-    text-transform: uppercase;
-    cursor: pointer;
-}
-.navbar .ul-list li a:hover,a:active{
-    color: red;
-}
-
-
-/* ============ icon button ============= */
-
-.mobile-navbar-btn{
-    display: none;
-    background: transparent;
-    cursor: pointer;
-}
-.mobile-nav-icon{
-    width: 40px;
-    height: 40px;
-    color: white;
-}
-.mobile-nav-icon[name="close-outline"]{
-    display: none;
-}
 
 
 /* ================= Main section ================= */
@@ -75,8 +29,7 @@ span{
 main{
     width: 100%;
     height: 70vh;
-    color: #fff;
-    background-color: black;
+    background-color: aquamarine;
     display: flex;
     text-align: center;
     align-items: center;
@@ -123,7 +76,6 @@ main h1{
         position: absolute;
         top: 0;
         left: 0;
-
 
         display: flex;
         justify-content: center;
@@ -172,18 +124,15 @@ main h1{
 
 
 .left{
-	background: url("{% static '/img/me.jpg'%}") no-repeat center; /*TODO: add some image*/
+	background: url("{% static '/img/contact.png'%}") no-repeat center; /*TODO: add some image*/
 	background-size: cover;
 	height: 100%;
     border-radius: 10px;
-    background-color: black;
 
 }
 
 .right{
 	padding: 25px 40px;
-    background-color: black;
-    color: white;
 }
 
 h2{
@@ -209,16 +158,16 @@ h2:after{
 	border: 2px solid rgba(0, 0, 0, 0);
     border-radius: 3px;
 	outline: none;
-	background-color: #5b525289;;
+	background-color: rgba(230, 230, 230, 0.835);
 	padding: 0.5rem 1rem;
 	font-size: 1.1rem;
 	margin-bottom: 22px;
 	transition: .3s;
 }
 
-/* .field:hover{
+.field:hover{
 	background-color: rgba(0, 0, 0, 0.1);
-} */
+}
 
 textarea{
 	min-height: 150px;
@@ -242,7 +191,7 @@ textarea{
 }
 
 .field:focus{
-    background-color: #726e6e7d;
+    background-color: #fff;
 }
 
 @media screen and (max-width: 768px){
@@ -256,86 +205,32 @@ textarea{
     </style>
 
 </head>
-<body style="background-color: black">
-    <header class="header active">
-        <label class="logo">
-            Tech<span>World</span>
-        </label>
+<body>
 
-        <nav class="navbar">
-            <ul class="ul-list">
-                <li><a href="{%url 'index'%}" class="active">Home</a></li>
-                <li><a href="#">Service</a></li>
-                <li><a href="#">About</a></li>
-                <li><a href="#">Contact</a></li>
-                <li><a href="#">Privacy</a></li>
-            </ul>
-        </nav>
-
-        <div class="mobile-navbar-btn">
-            <ion-icon name="menu-outline" class="mobile-nav-icon"></ion-icon>
-            <ion-icon name="close-outline" class="mobile-nav-icon"></ion-icon>
-        </div>
-    </header>
    
-<section class="section" id="contact" style="margin-top: 50px;">
-    <form action="{%url 'portfolio_view'%}" name="contactForm" method="POST" onsubmit="return validateForm()">
+<section class="section" id="contact">
+    {%for message in messages%}
+    <div class="alert alert-dismissible alert-success">
+        <strong> {{message}}</strong>
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+      </div>
+    {%endfor%}
+    <form action="{%url 'portfolio_view'%}" name="contactForm" method="POST" onsubmit="return ">
         {% csrf_token %}
         <div class="contact-box">
             <div class="left"></div>
             <div class="right">
                 <h2>Contact me</h2>
-                <input type="text" class="field" placeholder="Your Name" name="name">
-                <input type="text" class="field" placeholder="Your Email" name="email">
-                <input type="text" class="field" placeholder="Phone" name="phone">
-                <textarea placeholder="Message" class="field" name="message"></textarea>
-                <button class="btn">Send</button>
+                <input type="text" class="field" placeholder="Your Name" name="name" required>
+                <input type="email" class="field" placeholder="Your Email" name="email" required>
+                <input type="text" class="field" placeholder="Phone" name="phone" required>
+                <textarea placeholder="Message" class="field" name="message" required></textarea>
+                <button class="btn btn-lg btn-success">Send</button>
             </div>
         </div>
+        
     </form>
 </section>
-
-<script>
-    function validateForm(){
-        let name = document.forms['contactForm']['name'].value;
-        let email = document.forms['contactForm']['email'].value;
-        let phone = document.forms['contactForm']['phone'].value;
-        let message = document.forms['contactForm']['message'].value;
-  
-        if (name == '' || hasNumber(name)){
-            alert('Name must be filled out and must only contain letters');
-            return false;
-        } else if (email == '' && phone == ''){
-            alert('Email or phone must be filled out');
-            return false;
-        } else if (!(email.includes('@'))){
-            alert('Email does not seem to be valid');
-            return false;
-        }else if (isNaN(phone)){
-            alert('Phone number seems to contain letters');
-            return false;
-        } else if (message == ''){
-            alert('Message must be filled out');
-            return false;
-        } else {
-            // confirm or cancel
-            return confirm('Do you really want to sent the message?')
-        }
-    }
-  
-    function hasNumber(myString) {
-        return /\d/.test(myString);
-    }
-  </script>
-  <script>    const mobile_nav = document.querySelector(".mobile-navbar-btn");
-    const nav_header = document.querySelector(".header");
-    
-    const toogleNavbar =() =>{
-        nav_header.classList.toggle("active");
-    }
-    
-    mobile_nav.addEventListener("click", () =>toogleNavbar());</script>
-  <script type="module" src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.esm.js"></script>
-  <script nomodule src="https://unpkg.com/ionicons@5.5.2/dist/ionicons/ionicons.js"></script>
+  <script src="{%static '/vendor/bootstrap/js/bootstrap.bundle.min.js'%}"></script>
 </body>
 </html>

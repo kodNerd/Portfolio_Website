@@ -27,8 +27,8 @@ def portfolio_view(request):
         Phone:\n\t\t{}\n
         '''.format(form_data['name'], form_data['message'], form_data['email'],form_data['phone'])
         send_mail('You got a mail Ben!', message, '', ['bencoder9@gmail.com']) # TODO: enter your email address
-        
-    return render(request, 'Danapp/success.html', {})
+        messages.success(request,'Message sent successfully')        
+    return render(request, 'Danapp/contact.html', {})
 def contact(request):
     return render(request,'Danapp/contact.html')
 def portfolio_details(request):
