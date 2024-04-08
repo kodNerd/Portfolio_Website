@@ -40,6 +40,7 @@ EMAIL_HOST_PASSWORD = 'qyii nfun nmea zogr'
 # Application definition
 
 INSTALLED_APPS = [
+    'admin_soft.apps.AdminSoftDashboardConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
